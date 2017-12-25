@@ -1,11 +1,71 @@
 package game;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import entity.Entity;
+
 /**
  * @author Yang Yang Lu, John Bui, Jordan Siaha, Jero
  */
 public class Handler {
+	ArrayList<Entity> e = new ArrayList<Entity>();
+	private boolean up = false, down = false, right = false, left = false;
+	public boolean isUp() {
+		return up;
+	}
 
-	/* Yang: not sure yet */
-	private Map map;
-	private Game game;
+	public void setUp(boolean up) {
+		this.up = up;
+	}
+
+	public boolean isDown() {
+		return down;
+	}
+
+	public void setDown(boolean down) {
+		this.down = down;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public void tick() {
+		for (int i = 0; i < e.size(); i++) {
+			Entity en = e.get(i);
+
+			en.tick();
+		}
+	}
+
+	public void render(Graphics g) {
+		for (int i = 0; i < e.size(); i++) {
+			Entity en = e.get(i);
+
+			en.render(g);
+		}
+	}
+	
+	public void addEntity(Entity en) {
+		e.add(en);
+	}
+	
+	public void removeEntity(Entity en) {
+		e.remove(en);
+	}
+	
 }
