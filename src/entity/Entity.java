@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Graphics;
+
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -70,18 +71,6 @@ public abstract class Entity {
 	public void setId(ID id) {
 		this.id = id;
 	}
-
-	private int health;
-	// remembered position of entity on map
-	private Point pos;
-	private String name;
-	// sprite of the entity?
-	private Image img;
-	// rank used as render order
-	private int rank;
-
-	// change health base off amount
-	protected abstract void changeHealth(int amount);
 
 	// change position of x amount and y amount
 	protected abstract void changePos(int xAmt, int yAmt);

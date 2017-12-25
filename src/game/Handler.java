@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import entity.Entity;
 
