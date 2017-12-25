@@ -9,7 +9,7 @@ import entity.Entity;
  * @author Yang Yang Lu, John Bui, Jordan Siaha, Jero
  */
 public class Handler {
-	ArrayList<Entity> e = new ArrayList<Entity>();
+	public ArrayList<Entity> e = new ArrayList<Entity>();
 	private boolean up = false, down = false, right = false, left = false;
 	public boolean isUp() {
 		return up;

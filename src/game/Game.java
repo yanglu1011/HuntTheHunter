@@ -3,7 +3,9 @@ package game;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import entity.Player;
 
@@ -18,15 +20,23 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private Handler handler;
 
+	private BufferedImage level = null;
+
+	private Camera camera;
+
 	public Game() {
 		new Window(1000, 563, "Hunt the Hunter", this);
 		start();
-		
+
 		handler = new Handler();
-		
+		camera = new Camera(0, 0);
 		this.addKeyListener(new KeyInput(handler));
-		handler.addEntity(new Player(100, 100, ID.Player, handler));
-		
+
+		BufferedImageLoader loader = new BufferedImageLoader();
+		level = loader.loadImage("/Level1.png");
+
+		loadLevel(level);
+
 	}
 
 	private void start() {
@@ -76,6 +86,12 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void tick() {
+
+		for (int i = 0; i < handler.e.size(); i++) {
+			if (handler.e.get(i).getId() == ID.Player) {
+				camera.tick(handler.e.get(i));
+			}
+		}
 		handler.tick();
 	}
 
@@ -87,19 +103,51 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		Graphics g = bs.getDrawGraphics();
+		Graphics2D g2 = (Graphics2D) g;
+		
+		g.setColor(Color.red);
+		g.fillRect(0, 0, 1000, 563);
+
 		//////////////////////////////////////
 		// ----Draw things for game here-----//
 		
+		g2.translate(-camera.getX(), -camera.getY());
 		// Background
-		g.setColor(Color.red);
-		g.fillRect(0, 0, 1000, 563);
-		
 		
 		// All other objects
 		handler.render(g);
+		g2.translate(camera.getX(), camera.getY());
 		//////////////////////////////////////
 		g.dispose();
 		bs.show();
+	}
+
+	// Loading the level
+	private void loadLevel(BufferedImage image) {
+		int w = image.getWidth();
+		int h = image.getHeight();
+		System.out.println("WIDTH: " + w);
+		System.out.println("HEIGHT: " + h);
+
+		for (int xx = 0; xx < w; xx++) {
+			for (int yy = 0; yy < h; yy++) {
+				int pixel = image.getRGB(xx, yy);
+				int alpha = (pixel >> 24) & 0xff;
+				int red = (pixel >> 16) & 0xff;
+				int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
+				// System.out.println("argb: " + alpha + ", " + red + ", " + green + ", " +
+				// blue);
+
+				if (red == 237) {
+					handler.addEntity(new Block(xx * 32, yy * 32, ID.Block));
+				}
+
+				if (blue == 232) {
+					handler.addEntity(new Player(xx * 32, yy * 32, ID.Player, handler));
+				}
+			}
+		}
 	}
 
 	public static void main(String args[]) {

@@ -29,7 +29,8 @@ public abstract class Entity {
 
 	// Every object needs to draw something/appear to be something.
 	public abstract void render(Graphics g);
-
+	
+	// Gonna be helpful for collision purposes. Helps define hitbox.
 	public abstract Rectangle getBounds();
 
 	public int getX() {

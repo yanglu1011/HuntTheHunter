@@ -16,11 +16,6 @@ public class Item extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	protected void changeHealth(int amount) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	protected void changePos(int xAmt, int yAmt) {
