@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import entity.Enemy;
 import entity.Player;
 
 /**
@@ -31,6 +32,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		camera = new Camera(0, 0);
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(new MouseInput(handler, camera));
 
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/Level1.png");
@@ -145,6 +147,10 @@ public class Game extends Canvas implements Runnable {
 
 				if (blue == 232) {
 					handler.addEntity(new Player(xx * 32, yy * 32, ID.Player, handler));
+				}
+				
+				if(green == 255) {
+					handler.addEntity(new Enemy(xx * 32, yy * 32, ID.Enemy, handler));
 				}
 			}
 		}
