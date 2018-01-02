@@ -27,8 +27,7 @@ public class Player extends Entity {
 	protected Vector<Item> inventory = new Vector<>();
 
 	protected void changeHealth(int amount) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	protected void changePos(int xAmt, int yAmt) {
