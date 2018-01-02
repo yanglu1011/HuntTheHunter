@@ -1,9 +1,9 @@
 Version 0.1:
 --- spec:
 ------ Player:
---------- have Health
+--------- have Health - John
 ------------ view in GUI - John
---------- have ammo
+--------- have ammo - done
 ------------ view in GUI - John
 --------- range attack - done
 --------- melee attack (aoe) - Yang
