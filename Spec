@@ -1,0 +1,14 @@
+Version 0.1:
+--- spec:
+------ Player:
+--------- have Health
+------------ view in GUI - John
+--------- have ammo
+------------ view in GUI - John
+--------- range attack - done
+--------- melee attack (aoe) - Yang
+--------- one power up at a time
+--------- implement inventory - Yang
+--------- additional ammo type
+------ Item:
+--------- add type power up item - Jordan

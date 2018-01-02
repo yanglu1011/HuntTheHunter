@@ -17,7 +17,7 @@ public class Block extends Entity {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.black);
+		g.setColor(Color.RED);
 		g.fillRect(x, y, 32, 32);
 	}
 
