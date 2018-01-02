@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Vector;
 
+import game.Game;
 import game.Handler;
 import game.ID;
 
@@ -15,10 +16,11 @@ import game.ID;
 
 public class Player extends Entity {
 	Handler handler;
-
-	public Player(int x, int y, ID id, Handler handler) {
+	private Game game;
+	public Player(int x, int y, ID id, Handler handler, Game game) {
 		super(x, y, id);
 		this.handler = handler;
+		this.game = game;
 
 	}
 
@@ -73,6 +75,18 @@ public class Player extends Entity {
 
 				if (!placeFree(x, (int) (y + velY), getBounds(), en.getBounds())) {
 					velY = 0;
+				}
+			}
+			
+			if (en.getId() == ID.Crate) {
+				if (!placeFree((int) (x + velX), y, getBounds(), en.getBounds())) {
+					game.ammo += 10;
+					handler.removeEntity(en);
+				}
+
+				if (!placeFree(x, (int) (y + velY), getBounds(), en.getBounds())) {
+					game.ammo += 10;
+					handler.removeEntity(en);
 				}
 			}
 		}

@@ -22,6 +22,8 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;
 
 	private BufferedImage level = null;
+	
+	public int ammo = 100;
 
 	private Camera camera;
 
@@ -32,7 +34,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler();
 		camera = new Camera(0, 0);
 		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new MouseInput(handler, camera));
+		this.addMouseListener(new MouseInput(handler, camera, this));
 
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/Level1.png");
@@ -146,11 +148,14 @@ public class Game extends Canvas implements Runnable {
 				}
 
 				if (blue == 232) {
-					handler.addEntity(new Player(xx * 32, yy * 32, ID.Player, handler));
+					handler.addEntity(new Player(xx * 32, yy * 32, ID.Player, handler, this));
 				}
 				
 				if(green == 255) {
 					handler.addEntity(new Enemy(xx * 32, yy * 32, ID.Enemy, handler));
+				}
+				if(green == 217 && blue == 234 && red == 153) {
+					handler.addEntity(new Crate(xx * 32, yy * 32, ID.Crate));
 				}
 			}
 		}
