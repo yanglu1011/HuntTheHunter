@@ -50,6 +50,12 @@ public class Enemy extends Entity {
 					handler.removeEntity(en);
 				}
 			}
+			if (en.getId() == ID.Melee) {
+				if (getBounds().intersects(en.getBounds())) {
+					hp -= 50;
+					handler.removeEntity(en);
+				}
+			}
 		}
 		
 		if(hp <= 0) {

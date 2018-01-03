@@ -7,5 +7,6 @@ public enum ID {
 	Bullet(),
 	Enemy(),
 	Item(),
-	Obstable();
+	Obstable(),
+	Melee();
 }

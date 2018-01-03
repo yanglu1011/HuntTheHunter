@@ -10,7 +10,7 @@ import entity.Entity;
  */
 public class Handler {
 	public ArrayList<Entity> e = new ArrayList<Entity>();
-	private boolean up = false, down = false, right = false, left = false;
+	private boolean up = false, down = false, right = false, left = false, space = false;
 	public boolean isUp() {
 		return up;
 	}
@@ -42,6 +42,14 @@ public class Handler {
 	public void setLeft(boolean left) {
 		this.left = left;
 	}
+	
+//	public boolean isSpace() {
+//		return space;
+//	}
+//	
+//	public void setSpace(boolean space) {
+//		this.space = space;
+//	}
 
 	public void tick() {
 		for (int i = 0; i < e.size(); i++) {
@@ -66,5 +74,6 @@ public class Handler {
 	public void removeEntity(Entity en) {
 		e.remove(en);
 	}
+
 	
 }

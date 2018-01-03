@@ -43,9 +43,20 @@ public class KeyInput extends KeyAdapter {
 					handler.setUp(false);
 				}
 
+				if (key == KeyEvent.VK_SPACE) {
+					if (handler.isUp()) {
+						handler.addEntity(new Melee(en.getX(), en.getY() - 48, ID.Melee, handler));
+					} else if (handler.isDown()) {
+						handler.addEntity(new Melee(en.getX(), en.getY() + 48, ID.Melee, handler));
+					} else if (handler.isLeft()) {
+						handler.addEntity(new Melee(en.getX() - 32, en.getY(), ID.Melee, handler));
+					} else if (handler.isRight()) {
+						handler.addEntity(new Melee(en.getX() + 32, en.getY(), ID.Melee, handler));
+					}
+				}
+
 			}
 		}
 	}
 
-	
 }
